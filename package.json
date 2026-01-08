@@ -1,6 +1,6 @@
 {
   "name": "heic-png-converter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert HEIC images to PNG",
   "files": [
     "dist",

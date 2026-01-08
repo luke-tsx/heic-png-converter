@@ -54,7 +54,7 @@ const convertAllCommand = new Command('convert-all')
       console.log(`Converting ${file}...`);
       const inputBuffer = await readFile(resolve(root, file));
       const outputBuffer = await heicConvert({
-        buffer: inputBuffer.buffer.slice(inputBuffer.byteOffset, inputBuffer.byteOffset + inputBuffer.byteLength),
+        buffer: inputBuffer as any,
         format: 'PNG',
         quality: 1,
       });
