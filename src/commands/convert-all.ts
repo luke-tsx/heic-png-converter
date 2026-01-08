@@ -43,7 +43,7 @@ const convertAllCommand = new Command('convert-all')
 
     console.log(blue('Converting all .heic files to .png\n'));
 
-    const files = readdirSync(root).filter((file) => file.endsWith('.heic'));
+    const files = readdirSync(root).map((file) => file.toLowerCase()).filter((file) => file.endsWith('.heic'));
 
     if (files.length === 0) {
       console.log(blue('No .heic files found in the current directory.'));
@@ -54,7 +54,7 @@ const convertAllCommand = new Command('convert-all')
       console.log(`Converting ${file}...`);
       const inputBuffer = await readFile(resolve(root, file));
       const outputBuffer = await heicConvert({
-        buffer: inputBuffer,
+        buffer: inputBuffer.buffer.slice(inputBuffer.byteOffset, inputBuffer.byteOffset + inputBuffer.byteLength),
         format: 'PNG',
         quality: 1,
       });
